@@ -3,8 +3,8 @@ clipboard = require('electron').clipboard
 {scrollToBottom, messages} = require './messages'
 {later, toggleVisibility, convertEmoji, insertTextAtCursor} = require '../util'
 
-isModifierKey = (ev) -> ev.altKey || ev.ctrlKey || ev.metaKey || ev.shiftKey
-isAltCtrlMeta = (ev) -> ev.altKey || ev.ctrlKey || ev.metaKey
+isModifierKey = (ev) -> ev.altKey || ev.ctrlKey || ev.shiftKey
+isAltCtrlMeta = (ev) -> ev.altKey || ev.ctrlKey
 
 cursorToEnd = (el) -> el.selectionStart = el.selectionEnd = el.value.length
 
@@ -123,7 +123,8 @@ module.exports = view (models) ->
                             # also remove image preview
                             clearsImagePreview()
 
-                    if e.keyCode == 13
+                    console.log(models.viewstate.cmdSendsMessage)
+                    if (!models.viewstate.cmdSendsMessage && e.keyCode == 13 && e.metaKey) or (models.viewstate.cmdSendsMessage && e.keyCode == 13)
                         e.preventDefault()
                         preparemessage e.target
                     if e.target.value == ''

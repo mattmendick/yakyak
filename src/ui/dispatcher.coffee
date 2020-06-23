@@ -504,6 +504,9 @@ handle 'suggestemoji', (doshow) ->
 handle 'showimagepreview', (doshow) ->
     viewstate.setshowImagePreview doshow
 
+handle 'cmdsendsmessage', (doshow) ->
+    viewstate.setcmdSendsMessage doshow
+
 handle 'changetheme', (colorscheme) ->
     viewstate.setColorScheme colorscheme
 

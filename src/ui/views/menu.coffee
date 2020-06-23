@@ -256,6 +256,13 @@ templateView = (viewstate) ->
             checked: viewstate.showImagePreview
             enabled: viewstate.loggedin
             click: (it) -> action 'showimagepreview', it.checked
+        } if isDarwin
+        {
+            type: 'checkbox'
+            label: i18n.__('menu.view.cmdsendsmessage:⌘⏎ Sends message')
+            checked: viewstate.cmdSendsMessage
+            enabled: viewstate.loggedin
+            click: (it) -> action 'cmdsendsmessage', it.checked
         }
         {
             label: i18n.__('menu.view.color_scheme.title:Color Scheme')
